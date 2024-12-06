@@ -1,5 +1,3 @@
-# src/packet_handler.py
-
 from scapy.all import *
 from scapy.layers.inet import IP, TCP, UDP, ICMP
 import threading
@@ -8,6 +6,7 @@ from firewall_rules import RuleManager, Action, Protocol
 
 class PacketHandler:
     def __init__(self, interface="eth0"):
+        """Initialize the packet handler with specified network interface"""
         self.interface = interface
         self.logger = FirewallLogger()
         self.rule_manager = RuleManager()
@@ -15,11 +14,11 @@ class PacketHandler:
         self.packet_count = 0
         self.lock = threading.Lock()
         
-        # Add some default rules
+        # Add default rules
         self.rule_manager.add_rule(
             action=Action.ALLOW,
             protocol=Protocol.ANY,
-            source_ip="192.168.1.0/24",  # Local network
+            source_ip="192.168.1.0/24",
             description="Allow local network traffic"
         )
         
@@ -29,6 +28,29 @@ class PacketHandler:
             destination_port=22,
             description="Block incoming SSH"
         )
+
+    def start_capture(self):
+        """Start capturing and processing packets"""
+        self.running = True
+        self.logger.log_info(f"Starting packet capture on interface {self.interface}")
+        
+        try:
+            # Start Scapy's sniff function in filtering mode
+            sniff(
+                iface=self.interface,
+                prn=self.process_packet,  # Function to call for each packet
+                store=0,  # Don't store packets in memory
+                stop_filter=lambda _: not self.running  # Run until self.running is False
+            )
+        except Exception as e:
+            self.logger.log_error(f"Error in packet capture: {str(e)}")
+            self.running = False
+            raise
+
+    def stop_capture(self):
+        """Stop packet capture gracefully"""
+        self.logger.log_info("Stopping packet capture...")
+        self.running = False
 
     def process_packet(self, packet):
         """Process and filter captured packets"""
