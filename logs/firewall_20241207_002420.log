@@ -1,0 +1,43 @@
+2024-12-07 00:24:20,124 - INFO - [logger.py:84] - Logging initialized. Writing to: /home/ahaan/FireWall/logs/firewall_20241207_002420.log
+2024-12-07 00:24:20,125 - INFO - [logger.py:101] - Automatic logging started
+2024-12-07 00:24:20,125 - INFO - [logger.py:84] - Logging initialized. Writing to: /home/ahaan/FireWall/logs/firewall_20241207_002420.log
+2024-12-07 00:24:20,125 - INFO - [logger.py:101] - Automatic logging started
+2024-12-07 00:24:20,125 - INFO - [logger.py:84] - Logging initialized. Writing to: /home/ahaan/FireWall/logs/firewall_20241207_002420.log
+2024-12-07 00:24:20,126 - INFO - [logger.py:101] - Automatic logging started
+2024-12-07 00:24:20,126 - INFO - [firewall_rules.py:79] - Added rule 1: Allow local network traffic
+2024-12-07 00:24:20,126 - INFO - [firewall_rules.py:79] - Added rule 2: Block incoming SSH
+2024-12-07 00:24:20,126 - INFO - [firewall_rules.py:79] - Added rule 3: Allow established connections
+2024-12-07 00:24:20,126 - INFO - [firewall_rules.py:79] - Added rule 4: Allow local network traffic
+2024-12-07 00:24:20,126 - INFO - [firewall_rules.py:79] - Added rule 5: Block incoming SSH connections
+2024-12-07 00:24:20,126 - INFO - [logger.py:128] - Firewall application created successfully
+2024-12-07 00:24:20,126 - INFO - [logger.py:128] - Firewall application initialized
+2024-12-07 00:24:20,127 - INFO - [logger.py:128] - Starting packet capture on interface eth0
+2024-12-07 00:24:20,127 - INFO - [logger.py:128] - Starting firewall application
+2024-12-07 00:24:20,127 - INFO - [logger.py:128] - Default firewall rules configured
+2024-12-07 00:24:20,467 - INFO - [logger.py:128] - Packet 1: 10.0.2.15:59664 -> 142.250.182.214:443 [tcp] - ALLOW
+2024-12-07 00:24:20,468 - INFO - [logger.py:128] - Packet 2: 142.250.182.214:443 -> 10.0.2.15:59664 [tcp] - ALLOW
+2024-12-07 00:24:20,477 - INFO - [logger.py:128] - Packet 3: 142.250.182.214:443 -> 10.0.2.15:59664 [tcp] - ALLOW
+2024-12-07 00:24:20,526 - INFO - [logger.py:128] - Packet 4: 10.0.2.15:59664 -> 142.250.182.214:443 [tcp] - ALLOW
+2024-12-07 00:24:22,472 - INFO - [logger.py:128] - Packet 5: 10.0.2.15:35868 -> 202.88.187.140:443 [tcp] - ALLOW
+2024-12-07 00:24:22,474 - INFO - [logger.py:128] - Packet 6: 202.88.187.140:443 -> 10.0.2.15:35868 [tcp] - ALLOW
+2024-12-07 00:24:22,532 - INFO - [logger.py:128] - Packet 7: 10.0.2.15:39444 -> 34.149.100.209:443 [tcp] - ALLOW
+2024-12-07 00:24:22,533 - INFO - [logger.py:128] - Packet 8: 10.0.2.15:33822 -> 142.251.42.3:443 [tcp] - ALLOW
+2024-12-07 00:24:22,534 - INFO - [logger.py:128] - Packet 9: 10.0.2.15:60216 -> 142.250.67.225:443 [tcp] - ALLOW
+2024-12-07 00:24:22,534 - INFO - [logger.py:128] - Packet 10: 34.149.100.209:443 -> 10.0.2.15:39444 [tcp] - ALLOW
+2024-12-07 00:24:22,534 - INFO - [logger.py:128] - Packet 11: 142.251.42.3:443 -> 10.0.2.15:33822 [tcp] - ALLOW
+2024-12-07 00:24:22,535 - INFO - [logger.py:128] - Packet 12: 142.250.67.225:443 -> 10.0.2.15:60216 [tcp] - ALLOW
+2024-12-07 00:24:22,542 - INFO - [logger.py:128] - Packet 13: 34.149.100.209:443 -> 10.0.2.15:39444 [tcp] - ALLOW
+2024-12-07 00:24:22,545 - INFO - [logger.py:128] - Packet 14: 142.250.67.225:443 -> 10.0.2.15:60216 [tcp] - ALLOW
+2024-12-07 00:24:22,546 - INFO - [logger.py:128] - Packet 15: 142.251.42.3:443 -> 10.0.2.15:33822 [tcp] - ALLOW
+2024-12-07 00:24:22,587 - INFO - [logger.py:128] - Packet 16: 10.0.2.15:39444 -> 34.149.100.209:443 [tcp] - ALLOW
+2024-12-07 00:24:22,588 - INFO - [logger.py:128] - Packet 17: 10.0.2.15:60216 -> 142.250.67.225:443 [tcp] - ALLOW
+2024-12-07 00:24:22,609 - INFO - [logger.py:128] - Packet 18: 10.0.2.15:33822 -> 142.251.42.3:443 [tcp] - ALLOW
+2024-12-07 00:24:24,309 - INFO - [logger.py:128] - Packet 19: 10.0.2.15:58916 -> 202.88.187.141:443 [tcp] - ALLOW
+2024-12-07 00:24:24,310 - INFO - [logger.py:128] - Packet 20: 202.88.187.141:443 -> 10.0.2.15:58916 [tcp] - ALLOW
+2024-12-07 00:24:24,425 - INFO - [logger.py:128] - Packet 21: 51.104.15.253:443 -> 10.0.2.15:32892 [tcp] - ALLOW
+2024-12-07 00:24:24,962 - INFO - [logger.py:128] - Firewall shutdown initiated
+2024-12-07 00:24:24,962 - INFO - [logger.py:128] - Stopping packet capture...
+2024-12-07 00:24:24,963 - INFO - [logger.py:111] - Automatic logging stopped
+2024-12-07 00:24:25,023 - INFO - [logger.py:128] - Packet 22: 10.0.2.15:44970 -> 142.250.199.163:80 [tcp] - ALLOW
+2024-12-07 00:24:25,963 - INFO - [logger.py:128] - Shutting down main logger
+2024-12-07 00:24:25,964 - INFO - [logger.py:111] - Automatic logging stopped
