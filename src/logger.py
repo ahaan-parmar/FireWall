@@ -4,41 +4,70 @@ from datetime import datetime
 import pathlib
 import time
 import threading
-from queue import Queue
+from queue import Queue, Empty
 
 class FirewallLogger:
+    """
+    A thread-safe logging system for firewall operations that automatically processes
+    log messages in the background. This class handles log file creation, message
+    queuing, and asynchronous writing to prevent blocking operations.
+    """
     def __init__(self, log_directory='logs'):
-        """Initialize the logging system with proper directory handling"""
-        # Queue to store messages that need to be logged
+        """
+        Initialize the logging system with proper directory handling and background
+        processing capabilities.
+
+        Args:
+            log_directory (str): The directory where log files will be stored.
+                               Defaults to 'logs' in the project root.
+        """
+        # Queue to store messages for asynchronous processing
         self.log_queue = Queue()
         
-        # Flag to control the automatic logging thread
+        # Control flag for the background logging thread
         self.is_running = False
         
-        # Convert to absolute path from project root
+        # Set up the log directory path and create logging infrastructure
         self.log_directory = self._ensure_absolute_path(log_directory)
         self._setup_logging()
         
-        # Start the automatic logging thread
+        # Begin automatic logging as soon as the instance is created
         self.start_automatic_logging()
     
     def _ensure_absolute_path(self, directory):
-        """Convert relative path to absolute path from project root"""
+        """
+        Convert a relative path to an absolute path from the project root.
+        This ensures logs are stored in a consistent location regardless of
+        where the script is run from.
+
+        Args:
+            directory (str): The relative directory path.
+
+        Returns:
+            str: The absolute path to the log directory.
+        """
         project_root = pathlib.Path(__file__).parent.parent
         return os.path.join(project_root, directory)
     
     def _setup_logging(self):
-        """Configure the logging system with proper directory creation"""
+        """
+        Configure the logging system with proper directory creation and formatting.
+        Creates a new log file with a timestamp and sets up both file and console
+        output handlers.
+        """
         try:
-            # Create logs directory if it doesn't exist
+            # Ensure the log directory exists
             os.makedirs(self.log_directory, exist_ok=True)
             
-            # Create log filename with timestamp
+            # Create a timestamped log filename for this session
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             log_filename = os.path.join(
                 self.log_directory,
                 f'firewall_{timestamp}.log'
             )
+            
+            # Reset any existing logging configuration
+            logging.getLogger().handlers = []
             
             # Configure logging with both file and console output
             logging.basicConfig(
@@ -50,6 +79,7 @@ class FirewallLogger:
                 ]
             )
             
+            # Create a logger instance for this class
             self.logger = logging.getLogger(__name__)
             self.logger.info(f"Logging initialized. Writing to: {log_filename}")
             
@@ -59,7 +89,10 @@ class FirewallLogger:
             raise
 
     def start_automatic_logging(self):
-        """Start the automatic logging thread"""
+        """
+        Start the background thread that processes queued log messages.
+        This method ensures only one logging thread is running at a time.
+        """
         if not self.is_running:
             self.is_running = True
             self.logging_thread = threading.Thread(target=self._automatic_logging_worker)
@@ -68,22 +101,29 @@ class FirewallLogger:
             self.logger.info("Automatic logging started")
 
     def stop_automatic_logging(self):
-        """Stop the automatic logging thread"""
+        """
+        Gracefully stop the automatic logging thread and process any remaining
+        messages in the queue.
+        """
         self.is_running = False
         if hasattr(self, 'logging_thread'):
             self.logging_thread.join()
             self.logger.info("Automatic logging stopped")
 
     def _automatic_logging_worker(self):
-        """Worker function that processes the log queue"""
+        """
+        Background worker that continuously processes messages from the log queue.
+        This method runs in a separate thread and handles the actual logging
+        operations.
+        """
         while self.is_running:
             try:
-                # Get message from queue if available, wait up to 1 second
+                # Attempt to get a message from the queue, waiting up to 1 second
                 try:
                     log_entry = self.log_queue.get(timeout=1)
                     level, message = log_entry
                     
-                    # Log the message with appropriate level
+                    # Process the message based on its log level
                     if level == 'INFO':
                         self.logger.info(message)
                     elif level == 'WARNING':
@@ -94,7 +134,7 @@ class FirewallLogger:
                         self.log_packet(message)
                         
                     self.log_queue.task_done()
-                except Queue.Empty:
+                except Empty:
                     continue  # No messages in queue, continue waiting
                     
             except Exception as e:
@@ -102,7 +142,13 @@ class FirewallLogger:
                 time.sleep(1)  # Prevent tight loop in case of repeated errors
 
     def queue_log(self, level, message):
-        """Add a log message to the queue"""
+        """
+        Add a log message to the processing queue.
+        
+        Args:
+            level (str): The log level ('INFO', 'WARNING', 'ERROR', 'PACKET')
+            message (str): The message to be logged
+        """
         self.log_queue.put((level, message))
 
     def log_info(self, message):
@@ -118,7 +164,13 @@ class FirewallLogger:
         self.queue_log('ERROR', message)
     
     def log_packet(self, packet_info):
-        """Log packet information"""
+        """
+        Log packet information in a standardized format.
+        
+        Args:
+            packet_info (dict or str): Either a dictionary containing packet details
+                                     or a string message to log directly
+        """
         if isinstance(packet_info, dict):
             message = (
                 f"Packet captured - "
@@ -129,3 +181,37 @@ class FirewallLogger:
             self.logger.info(message)
         else:
             self.logger.info(str(packet_info))
+
+# Example usage and testing code
+def main():
+    """
+    Example usage of the FirewallLogger class.
+    """
+    try:
+        # Create logger instance
+        logger = FirewallLogger()
+        
+        # Example logging
+        logger.log_info("Firewall system initialized")
+        
+        # Example packet data
+        packet = {
+            'src_ip': '192.168.1.100',
+            'dst_ip': '8.8.8.8',
+            'protocol': 'TCP'
+        }
+        logger.queue_log('PACKET', packet)
+        
+        # Keep the program running to demonstrate automatic logging
+        print("Logger is running. Press Ctrl+C to stop...")
+        while True:
+            time.sleep(1)
+            
+    except KeyboardInterrupt:
+        print("\nShutting down logger...")
+        logger.log_info("System shutdown initiated")
+        logger.stop_automatic_logging()
+        time.sleep(1)  # Give time for final messages to be processed
+
+if __name__ == "__main__":
+    main()
