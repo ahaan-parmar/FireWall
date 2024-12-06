@@ -2,7 +2,7 @@ import os
 import sys
 import signal
 import threading
-from packet_handler import PacketHandler
+from packethandler import PacketHandler
 from firewall_rules import RuleManager, Action, Protocol
 from logger import FirewallLogger
 
