@@ -1,0 +1,48 @@
+2024-12-07 00:19:19,516 - INFO - [logger.py:54] - Logging initialized. Writing to: /home/ahaan/FireWall/logs/firewall_20241207_001919.log
+2024-12-07 00:19:19,516 - INFO - [logger.py:68] - Automatic logging started
+2024-12-07 00:19:19,518 - INFO - [logger.py:88] - Starting firewall program
+2024-12-07 00:19:19,520 - INFO - [logger.py:54] - Logging initialized. Writing to: /home/ahaan/FireWall/logs/firewall_20241207_001919.log
+2024-12-07 00:19:19,520 - INFO - [logger.py:68] - Automatic logging started
+2024-12-07 00:19:19,520 - INFO - [logger.py:54] - Logging initialized. Writing to: /home/ahaan/FireWall/logs/firewall_20241207_001919.log
+2024-12-07 00:19:19,521 - INFO - [logger.py:68] - Automatic logging started
+2024-12-07 00:19:19,521 - INFO - [firewall_rules.py:79] - Added rule 1: Allow local network traffic
+2024-12-07 00:19:19,521 - INFO - [firewall_rules.py:79] - Added rule 2: Block incoming SSH
+2024-12-07 00:19:19,521 - INFO - [firewall_rules.py:79] - Added rule 3: Allow established connections
+2024-12-07 00:19:19,521 - INFO - [firewall_rules.py:79] - Added rule 4: Allow local network traffic
+2024-12-07 00:19:19,521 - INFO - [firewall_rules.py:79] - Added rule 5: Block incoming SSH connections
+2024-12-07 00:19:19,521 - INFO - [logger.py:88] - Firewall application initialized
+2024-12-07 00:19:19,521 - INFO - [logger.py:88] - Firewall application created successfully
+2024-12-07 00:19:19,521 - INFO - [logger.py:88] - Starting firewall application
+2024-12-07 00:19:19,522 - INFO - [logger.py:88] - Starting packet capture on interface eth0
+2024-12-07 00:19:19,522 - INFO - [logger.py:88] - Default firewall rules configured
+2024-12-07 00:19:20,523 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:20,523 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:20,523 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:22,524 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:22,524 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:22,524 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:24,527 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:24,528 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:24,529 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:26,528 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:26,529 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:26,530 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:28,608 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:28,609 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:28,609 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:30,612 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:30,612 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:30,613 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:32,620 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:32,623 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:32,623 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:34,621 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:34,623 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:34,624 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:36,509 - INFO - [logger.py:88] - Firewall shutdown initiated
+2024-12-07 00:19:36,509 - INFO - [logger.py:88] - Stopping packet capture...
+2024-12-07 00:19:36,509 - INFO - [logger.py:75] - Automatic logging stopped
+2024-12-07 00:19:36,510 - INFO - [logger.py:88] - Packet 1: 10.0.2.15:43694 -> 13.67.9.5:443 [tcp] - ALLOW
+2024-12-07 00:19:36,625 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:37,511 - ERROR - [logger.py:101] - Error in logging worker: type object 'Queue' has no attribute 'Empty'
+2024-12-07 00:19:37,625 - INFO - [logger.py:75] - Automatic logging stopped
