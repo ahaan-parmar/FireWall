@@ -1,3 +1,0 @@
-2024-12-06 15:48:24,238 - INFO - [logger.py:34] - Logging system initialized
-2024-12-06 15:48:24,238 - INFO - [firewall_rules.py:79] - Added rule 1: Allow local network traffic
-2024-12-06 15:48:24,238 - INFO - [firewall_rules.py:79] - Added rule 2: Block incoming SSH
