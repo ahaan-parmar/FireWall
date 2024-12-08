@@ -1,8 +1,11 @@
+# src/firewall_rules.py
+
 from dataclasses import dataclass
-from typing import List, Optional, Dict
-import ipaddress
-import logging
+from typing import Optional, Union
+from ipaddress import IPv4Network, IPv4Address
 from enum import Enum
+import uuid
+import logging
 
 class Action(Enum):
     #Defines possible actions for firewall rules
@@ -19,68 +22,47 @@ class Protocol(Enum):
 
 @dataclass
 class Rule:
-    #Represents a single firewall rule
-    id: int
-    action: Action
-    protocol: Protocol
-    source_ip: Optional[str] = None
-    destination_ip: Optional[str] = None
+    #Represents a single firewall rule.
+    id: str = str(uuid.uuid4())
+    action: Action = Action.DENY
+    protocol: Protocol = Protocol.ANY
+    source_ip: Optional[Union[str, IPv4Network, IPv4Address]] = None
+    destination_ip: Optional[Union[str, IPv4Network, IPv4Address]] = None
     source_port: Optional[int] = None
     destination_port: Optional[int] = None
+    priority: int = 0
     description: str = ""
     enabled: bool = True
 
     def __post_init__(self):
-        #Validate rule parameters after initialization
-        if self.source_ip:
+        #Validate and convert IP addresses after initialization
+        if isinstance(self.source_ip, str):
             try:
-                ipaddress.ip_network(self.source_ip)
+                self.source_ip = IPv4Network(self.source_ip)
             except ValueError:
-                raise ValueError(f"Invalid source IP address: {self.source_ip}")
+                self.source_ip = IPv4Address(self.source_ip)
         
-        if self.destination_ip:
+        if isinstance(self.destination_ip, str):
             try:
-                ipaddress.ip_network(self.destination_ip)
+                self.destination_ip = IPv4Network(self.destination_ip)
             except ValueError:
-                raise ValueError(f"Invalid destination IP address: {self.destination_ip}")
+                self.destination_ip = IPv4Address(self.destination_ip)
 
 class RuleManager:
-    #Manages firewall rules and their application
-    
+    #Manages firewall rules and handles packet evaluation against rules.
     def __init__(self):
-        self.rules: List[Rule] = []
+        self.rules = []
+        self.default_action = Action.DENY
         self.logger = logging.getLogger(__name__)
-        self._rule_counter = 0
 
-    def add_rule(self, 
-                 action: Action,
-                 protocol: Protocol,
-                 source_ip: Optional[str] = None,
-                 destination_ip: Optional[str] = None,
-                 source_port: Optional[int] = None,
-                 destination_port: Optional[int] = None,
-                 description: str = "") -> Rule:
-        """
-        Add a new firewall rule
-        Returns the created rule
-       """
-        self._rule_counter += 1
-        rule = Rule(
-            id=self._rule_counter,
-            action=action,
-            protocol=protocol,
-            source_ip=source_ip,
-            destination_ip=destination_ip,
-            source_port=source_port,
-            destination_port=destination_port,
-            description=description
-        )
+    def add_rule(self, rule: Rule) -> None:
+        #Add a new rule to the ruleset#
         self.rules.append(rule)
-        self.logger.info(f"Added rule {rule.id}: {description}")
-        return rule
+        self._sort_rules()
+        self.logger.info(f"Added rule {rule.id}: {rule.description}")
 
-    def remove_rule(self, rule_id: int) -> bool:
-        #Remove a rule by its ID#
+    def remove_rule(self, rule_id: str) -> bool:
+        #Remove a rule by its ID
         for i, rule in enumerate(self.rules):
             if rule.id == rule_id:
                 self.rules.pop(i)
@@ -88,57 +70,66 @@ class RuleManager:
                 return True
         return False
 
-    def evaluate_packet(self, packet_info: Dict) -> Action:
-        """
-        Evaluate a packet against all rules
-        Returns the action to take for this packet
-        """
+    def _sort_rules(self) -> None:
+        #Sort rules by priority (highest first)
+        self.rules.sort(key=lambda x: x.priority, reverse=True)
+
+    def evaluate_packet(self, packet_info: dict) -> Action:
+        #Evaluate a packet against all rules and return the appropriate action.
         for rule in self.rules:
             if not rule.enabled:
                 continue
 
-            # Check protocol match
+            if self._packet_matches_rule(packet_info, rule):
+                self.logger.debug(
+                    f"Packet matched rule {rule.id}: {rule.description}"
+                )
+                return rule.action
+
+        return self.default_action
+
+    def _packet_matches_rule(self, packet_info: dict, rule: Rule) -> bool:
+        #Check if a packet matches all criteria of a rule
+        try:
+            # Check protocol
             if (rule.protocol != Protocol.ANY and 
-                packet_info['protocol'].lower() != rule.protocol.value):
-                continue
+                packet_info['protocol'] != rule.protocol.value):
+                return False
 
-            # Check IP matches
-            if rule.source_ip and not self._ip_matches(
-                packet_info['src_ip'], rule.source_ip):
-                continue
+            # Check source IP
+            if rule.source_ip:
+                packet_src_ip = IPv4Address(packet_info['src_ip'])
+                if isinstance(rule.source_ip, IPv4Network):
+                    if packet_src_ip not in rule.source_ip:
+                        return False
+                elif packet_src_ip != rule.source_ip:
+                    return False
 
-            if rule.destination_ip and not self._ip_matches(
-                packet_info['dst_ip'], rule.destination_ip):
-                continue
+            # Check destination IP
+            if rule.destination_ip:
+                packet_dst_ip = IPv4Address(packet_info['dst_ip'])
+                if isinstance(rule.destination_ip, IPv4Network):
+                    if packet_dst_ip not in rule.destination_ip:
+                        return False
+                elif packet_dst_ip != rule.destination_ip:
+                    return False
 
-            # Check port matches for TCP/UDP
-            if packet_info['protocol'].lower() in ('tcp', 'udp'):
+            # Check ports for TCP/UDP
+            if packet_info['protocol'] in ('tcp', 'udp'):
                 if (rule.source_port and 
                     packet_info.get('src_port') != rule.source_port):
-                    continue
+                    return False
                 
                 if (rule.destination_port and 
                     packet_info.get('dst_port') != rule.destination_port):
-                    continue
+                    return False
 
-            # If we reach here, all rule conditions matched
-            self.logger.debug(
-                f"Packet matched rule {rule.id}: {rule.description}")
-            return rule.action
+            return True
 
-        # If no rules match, default to DENY
-        return Action.DENY
-
-    def _ip_matches(self, ip: str, rule_ip: str) -> bool:
-        #Check if an IP matches a rule's IP
-        try:
-            packet_ip = ipaddress.ip_address(ip)
-            rule_network = ipaddress.ip_network(rule_ip)
-            return packet_ip in rule_network
-        except ValueError:
-            self.logger.error(f"Invalid IP address in comparison: {ip} or {rule_ip}")
+        except Exception as e:
+            self.logger.error(f"Error matching rule: {str(e)}")
             return False
 
-    def list_rules(self) -> List[Rule]:
-        #Return all current rules#
-        return self.rules
+    def get_rules(self) -> list:
+        #Return all current rules
+        return self.rules.copy()
