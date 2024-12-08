@@ -1,0 +1,19 @@
+2024-12-08 21:46:10,103 - INFO - [logger.py:84] - Logging initialized. Writing to: /home/ahaan/FireWall/logs/firewall_20241208_214610.log
+2024-12-08 21:46:10,107 - INFO - [logger.py:101] - Automatic logging started
+2024-12-08 21:46:10,108 - INFO - [logger.py:84] - Logging initialized. Writing to: /home/ahaan/FireWall/logs/firewall_20241208_214610.log
+2024-12-08 21:46:10,109 - INFO - [logger.py:101] - Automatic logging started
+2024-12-08 21:46:10,109 - INFO - [logger.py:84] - Logging initialized. Writing to: /home/ahaan/FireWall/logs/firewall_20241208_214610.log
+2024-12-08 21:46:10,109 - INFO - [logger.py:101] - Automatic logging started
+2024-12-08 21:46:10,110 - INFO - [firewall_rules.py:62] - Added rule ab829d0b-61bd-43be-b873-efe3411945f1: Allow local network traffic
+2024-12-08 21:46:10,110 - INFO - [firewall_rules.py:62] - Added rule ab829d0b-61bd-43be-b873-efe3411945f1: Block incoming SSH connections
+2024-12-08 21:46:10,110 - INFO - [logger.py:128] - Firewall application initialized
+2024-12-08 21:46:10,110 - INFO - [logger.py:128] - Firewall application created successfully
+2024-12-08 21:46:10,110 - ERROR - [rule_config.py:30] - Error loading rules: [Errno 2] No such file or directory: 'config/rules.yaml'
+2024-12-08 21:46:10,110 - INFO - [logger.py:128] - Starting firewall application
+2024-12-08 21:46:10,111 - INFO - [logger.py:128] - Loaded 0 rules from configuration
+2024-12-08 21:46:10,111 - INFO - [logger.py:128] - Starting packet capture on interface eth0
+2024-12-08 21:46:10,111 - ERROR - [logger.py:132] - Error in packet capture: [Errno 1] Operation not permitted
+2024-12-08 21:55:51,330 - INFO - [logger.py:128] - Shutting down main logger
+2024-12-08 21:55:51,330 - INFO - [logger.py:128] - Firewall shutdown complete
+2024-12-08 21:55:51,330 - INFO - [logger.py:128] - Stopping packet capture
+2024-12-08 21:55:51,335 - INFO - [logger.py:111] - Automatic logging stopped
