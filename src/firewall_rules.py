@@ -1,5 +1,3 @@
-# src/firewall_rules.py
-
 from dataclasses import dataclass
 from typing import Optional, Union
 from ipaddress import IPv4Network, IPv4Address
@@ -22,7 +20,9 @@ class Protocol(Enum):
 
 @dataclass
 class Rule:
-    #Represents a single firewall rule.
+    """
+    Represents a single firewall rule.
+    Each rule defines criteria for matching packets and an action to take."""
     id: str = str(uuid.uuid4())
     action: Action = Action.DENY
     protocol: Protocol = Protocol.ANY
@@ -35,7 +35,7 @@ class Rule:
     enabled: bool = True
 
     def __post_init__(self):
-        #Validate and convert IP addresses after initialization
+       #Validate and convert IP addresses after initialization
         if isinstance(self.source_ip, str):
             try:
                 self.source_ip = IPv4Network(self.source_ip)
@@ -49,20 +49,21 @@ class Rule:
                 self.destination_ip = IPv4Address(self.destination_ip)
 
 class RuleManager:
-    #Manages firewall rules and handles packet evaluation against rules.
+    #manages firewall rules and handles packet evaluation against rules.
+ 
     def __init__(self):
         self.rules = []
         self.default_action = Action.DENY
         self.logger = logging.getLogger(__name__)
 
     def add_rule(self, rule: Rule) -> None:
-        #Add a new rule to the ruleset#
+        #add a new rule and sort by priority
         self.rules.append(rule)
         self._sort_rules()
         self.logger.info(f"Added rule {rule.id}: {rule.description}")
 
     def remove_rule(self, rule_id: str) -> bool:
-        #Remove a rule by its ID
+        #Remove a rule by its id
         for i, rule in enumerate(self.rules):
             if rule.id == rule_id:
                 self.rules.pop(i)
@@ -75,7 +76,7 @@ class RuleManager:
         self.rules.sort(key=lambda x: x.priority, reverse=True)
 
     def evaluate_packet(self, packet_info: dict) -> Action:
-        #Evaluate a packet against all rules and return the appropriate action.
+        # Evaluate a packet against all rules and return the appropriate action.
         for rule in self.rules:
             if not rule.enabled:
                 continue
