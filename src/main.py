@@ -10,6 +10,8 @@ from logger import FirewallLogger
 
 class FirewallApplication:
     def __init__(self, interface="eth0", config_file="config/rules.yaml"):
+        base_dir = os.path.dirname(os.path.abspath(__file__))  # Get the script's directory
+        self.config_file = os.path.join(base_dir, config_file)
         # Initialize our core components
         self.logger = FirewallLogger()
         self.packet_handler = PacketHandler(interface=interface)
