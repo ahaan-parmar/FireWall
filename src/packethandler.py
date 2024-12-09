@@ -5,7 +5,8 @@ from logger import FirewallLogger
 from firewall_rules import RuleManager, Action, Protocol, Rule
 
 class PacketHandler:
-    #Handles packet capture and processing with rule-based filtering
+    #Handles packet capture and processing with rule-based filtering.
+ 
     def __init__(self, interface="eth0"):
         self.interface = interface
         self.logger = FirewallLogger()
@@ -13,28 +14,45 @@ class PacketHandler:
         self.running = False
         self.packet_count = 0
         self.lock = threading.Lock()
-
-        # Add some default rules
+        
+        # Set up default rules
         self._setup_default_rules()
 
     def _setup_default_rules(self):
-        #Set up default firewall rules
-        # Allow local network traffic
+        """Set up default firewall rules"""
+        # Allow web traffic
+        self.rule_manager.add_rule(Rule(
+            action=Action.ALLOW,
+            protocol=Protocol.TCP,
+            destination_port=80,
+            description="Allow HTTP traffic",
+            priority=100
+        ))
+        
+        self.rule_manager.add_rule(Rule(
+            action=Action.ALLOW,
+            protocol=Protocol.TCP,
+            destination_port=443,
+            description="Allow HTTPS traffic",
+            priority=100
+        ))
+
+        # Allow DNS
+        self.rule_manager.add_rule(Rule(
+            action=Action.ALLOW,
+            protocol=Protocol.UDP,
+            destination_port=53,
+            description="Allow DNS queries",
+            priority=90
+        ))
+
+        # Allow local network
         self.rule_manager.add_rule(Rule(
             action=Action.ALLOW,
             protocol=Protocol.ANY,
             source_ip="192.168.1.0/24",
             description="Allow local network traffic",
-            priority=100
-        ))
-
-        # Block incoming SSH
-        self.rule_manager.add_rule(Rule(
-            action=Action.DENY,
-            protocol=Protocol.TCP,
-            destination_port=22,
-            description="Block incoming SSH connections",
-            priority=90
+            priority=80
         ))
 
     def start_capture(self):
@@ -56,12 +74,12 @@ class PacketHandler:
             raise
 
     def stop_capture(self):
-        #Stop packet capture#
+        #top packet capture
         self.logger.log_info("Stopping packet capture")
         self.running = False
 
     def process_packet(self, packet):
-        #Process and filter captured packets#
+        #Process and filter captured packets
         try:
             with self.lock:
                 self.packet_count += 1
@@ -81,7 +99,7 @@ class PacketHandler:
                 f"[{packet_info['protocol']}] - {action.value.upper()}"
             )
             
-            # Return True to allow packet, False to block
+            # Return true to allow packet, false to block
             return action == Action.ALLOW
             
         except Exception as e:
@@ -89,7 +107,7 @@ class PacketHandler:
             return False
 
     def _extract_packet_info(self, packet):
-        #Extract relevant information from a packet
+        #extract relevant information from a packet
         if IP not in packet:
             return None
             
@@ -122,7 +140,7 @@ class PacketHandler:
         return info
 
     def add_rule(self, rule: Rule):
-        #Add a new firewall rule
+        #Add a new firewall rul
         self.rule_manager.add_rule(rule)
 
     def remove_rule(self, rule_id: str):
