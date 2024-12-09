@@ -3,7 +3,7 @@ import sys
 import signal
 import threading
 import time
-from packet_handler import PacketHandler
+from packethandler import PacketHandler
 from firewall_rules import Rule, Action, Protocol
 from rule_config import RuleConfiguration
 from logger import FirewallLogger
