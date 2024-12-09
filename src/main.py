@@ -22,19 +22,19 @@ class FirewallApplication:
         
         self.logger.log_info("Firewall application initialized")
 
-def load_config(self):
-    #Load firewall rules from configuration file
-    try:
-        rules = self.config.load_rules()
-        for rule in rules:
-            self.packet_handler.add_rule(rule)
-        self.logger.log_info(f"Loaded {len(rules)} rules from configuration")
-    except FileNotFoundError:
-        self.logger.log_warning("Configuration file not found, using default rules")
-    except Exception as e:
-        self.logger.log_error(f"Error loading configuration: {str(e)}")
+    def load_config(self):
+        """Load firewall rules from configuration file"""
+        try:
+            rules = self.config.load_rules()
+            for rule in rules:
+                self.packet_handler.add_rule(rule)
+            self.logger.log_info(f"Loaded {len(rules)} rules from configuration")
+        except FileNotFoundError:
+            self.logger.log_warning("Configuration file not found, using default rules")
+        except Exception as e:
+            self.logger.log_error(f"Error loading configuration: {str(e)}")
 
-    def handle_shutdown(self, signum, frame):
+    def _handle_shutdown(self, signum, frame):
         print("\nReceived shutdown signal. Stopping firewall...")
         self.running = False
         self.packet_handler.stop_capture()
