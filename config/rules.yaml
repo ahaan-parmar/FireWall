@@ -1,4 +1,4 @@
-# config/rules.yaml
+
 rules:
   - action: allow
     protocol: tcp
@@ -29,3 +29,21 @@ rules:
     destination_port: 22
     description: "Block SSH connections"
     priority: 70
+
+  - action: allow
+    protocol: udp
+    source_port: 53
+    description: "Allow inbound DNS responses"
+    priority: 85
+
+  - action: allow
+    protocol: tcp
+    state: established
+    description: "Allow established TCP connections"
+    priority: 50
+
+  - action: allow
+    protocol: udp
+    state: established
+    description: "Allow established UDP connections"
+    priority: 50
