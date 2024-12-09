@@ -1,0 +1,9 @@
+2024-12-09 21:48:35,548 - INFO - [logger.py:43] - Logging initialized. Writing to: /home/ahaan/FireWall/logs/firewall_20241209_214835.log
+2024-12-09 21:48:35,548 - INFO - [logger.py:52] - Starting firewall program
+2024-12-09 21:48:35,548 - INFO - [logger.py:43] - Logging initialized. Writing to: /home/ahaan/FireWall/logs/firewall_20241209_214835.log
+2024-12-09 21:48:35,549 - INFO - [logger.py:43] - Logging initialized. Writing to: /home/ahaan/FireWall/logs/firewall_20241209_214835.log
+2024-12-09 21:48:35,549 - INFO - [firewall_rules.py:63] - Added rule 6d6f9677-f4ec-4c9a-828c-521fa0023536: Allow HTTP traffic
+2024-12-09 21:48:35,549 - INFO - [firewall_rules.py:63] - Added rule 6d6f9677-f4ec-4c9a-828c-521fa0023536: Allow HTTPS traffic
+2024-12-09 21:48:35,549 - INFO - [firewall_rules.py:63] - Added rule 6d6f9677-f4ec-4c9a-828c-521fa0023536: Allow DNS queries
+2024-12-09 21:48:35,549 - INFO - [firewall_rules.py:63] - Added rule 6d6f9677-f4ec-4c9a-828c-521fa0023536: Allow local network traffic
+2024-12-09 21:48:35,549 - ERROR - [logger.py:60] - Critical error in main: 'FirewallApplication' object has no attribute 'handle_shutdown'

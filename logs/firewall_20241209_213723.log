@@ -1,0 +1,15 @@
+2024-12-09 21:37:23,192 - INFO - [logger.py:43] - Logging initialized. Writing to: /home/ahaan/FireWall/logs/firewall_20241209_213723.log
+2024-12-09 21:37:23,192 - INFO - [logger.py:52] - Starting firewall program
+2024-12-09 21:37:23,192 - INFO - [logger.py:43] - Logging initialized. Writing to: /home/ahaan/FireWall/logs/firewall_20241209_213723.log
+2024-12-09 21:37:23,192 - INFO - [logger.py:43] - Logging initialized. Writing to: /home/ahaan/FireWall/logs/firewall_20241209_213723.log
+2024-12-09 21:37:23,192 - INFO - [firewall_rules.py:63] - Added rule 0a052072-774d-4862-90cd-d22219901c14: Allow HTTP traffic
+2024-12-09 21:37:23,192 - INFO - [firewall_rules.py:63] - Added rule 0a052072-774d-4862-90cd-d22219901c14: Allow HTTPS traffic
+2024-12-09 21:37:23,193 - INFO - [firewall_rules.py:63] - Added rule 0a052072-774d-4862-90cd-d22219901c14: Allow DNS queries
+2024-12-09 21:37:23,193 - INFO - [firewall_rules.py:63] - Added rule 0a052072-774d-4862-90cd-d22219901c14: Allow local network traffic
+2024-12-09 21:37:23,193 - INFO - [logger.py:52] - Firewall application initialized
+2024-12-09 21:37:23,193 - INFO - [logger.py:52] - Starting firewall application
+2024-12-09 21:37:23,193 - ERROR - [rule_config.py:30] - Error loading rules: [Errno 2] No such file or directory: 'config/rules.yaml'
+2024-12-09 21:37:23,193 - INFO - [logger.py:52] - Loaded 0 rules from configuration
+2024-12-09 21:37:23,193 - INFO - [logger.py:52] - Starting packet capture on interface eth0
+2024-12-09 21:37:41,330 - INFO - [logger.py:52] - Stopping packet capture
+2024-12-09 21:37:41,330 - INFO - [logger.py:52] - Firewall shutdown complete
