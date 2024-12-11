@@ -6,11 +6,11 @@ A robust Python-based network firewall implementation that provides real-time pa
 
 This firewall implementation includes several key capabilities that make it a valuable tool for network monitoring and security:
 
-The packet capture system actively monitors network traffic in real-time, providing detailed insights into all network communications. It uses the powerful Scapy library to analyze packets at a granular level, allowing for deep inspection of network protocols and traffic patterns.
-
-The logging system maintains comprehensive records of all network activity, creating timestamped logs that track everything from basic packet information to potential security threats. These logs provide valuable data for both real-time monitoring and post-incident analysis.
-
-The rule-based filtering system allows for precise control over network traffic, with support for filtering based on IP addresses, ports, and protocols. This system follows a "default deny" security policy, ensuring that only explicitly allowed traffic passes through.
+- **Stateful Packet Inspection**: Advanced connection tracking for both TCP and UDP traffic, ensuring secure and reliable communications.
+- **Rule-Based Filtering**: Configurable YAML-based rules system for precise traffic control.
+- **Real-Time Monitoring**: Active packet capture and analysis using Scapy for deep protocol inspection.
+- **Comprehensive Logging**: Detailed logging of all network activities with timestamps and traffic patterns.
+- **Modular Architecture**: Well-structured codebase allowing easy extension and modification.
 
 ## Prerequisites
 
@@ -23,6 +23,7 @@ Before you begin working with this firewall, ensure you have the following prere
 
 The project has the following package dependencies:
 - Scapy for packet capture and analysis
+- PyYAML for configuration management
 - Python-logging for comprehensive logging capabilities
 
 ## Installation
@@ -39,7 +40,38 @@ python3 -m venv venv
 source venv/bin/activate
 
 # Install required packages
-pip install scapy python-logging
+pip install scapy pyyaml
+```
+
+## Configuration
+
+Create a rules.yaml file in the config directory:
+
+```yaml
+rules:
+  - action: allow
+    protocol: tcp
+    destination_port: 80
+    description: "Allow HTTP traffic"
+    priority: 100
+
+  - action: allow
+    protocol: tcp
+    destination_port: 443
+    description: "Allow HTTPS traffic"
+    priority: 100
+
+  - action: allow
+    protocol: udp
+    destination_port: 53
+    description: "Allow DNS queries"
+    priority: 90
+
+  - action: allow
+    protocol: any
+    source_ip: "192.168.1.0/24"
+    description: "Allow local network traffic"
+    priority: 80
 ```
 
 ## Usage
@@ -69,24 +101,37 @@ The project is organized into several key components:
 FireWall/
 ├── src/
 │   ├── main.py           # Main application entry point
-│   ├── packet_handler.py # Packet capture and processing
-│   ├── logger.py        # Logging system
-│   └── firewall_rules.py # Rule management system
-├── logs/                # Log file directory
-├── venv/                # Virtual environment
-├── README.md           # Project documentation
-└── requirements.txt    # Package dependencies
+│   ├── packethandler.py  # Packet capture and processing
+│   ├── logger.py         # Logging system
+│   ├── firewall_rules.py # Rule management system
+│   └── rule_config.py    # Configuration handling
+├── config/
+│   └── rules.yaml        # Firewall rules configuration
+├── logs/                 # Log file directory
+└── README.md            # Project documentation
 ```
 
 ## Implementation Details
 
-The firewall is built with modularity and extensibility in mind, featuring three main components:
+The firewall features three main components:
 
-1. Packet Handler: Manages network traffic interception and processing, using Scapy for packet capture and analysis. It runs in a separate thread to ensure efficient packet processing without impacting system performance.
+1. **Packet Handler**: 
+   - Network traffic interception using Scapy
+   - Stateful connection tracking
+   - Multi-threaded packet processing
+   - Protocol-specific handling (TCP, UDP, DNS)
 
-2. Logger System: Provides comprehensive logging capabilities, tracking all system events and packet information. The logging system is thread-safe and supports both file and console output for real-time monitoring.
+2. **Logger System**: 
+   - Thread-safe logging
+   - Comprehensive event tracking
+   - Both file and console output
+   - Timestamped entries
 
-3. Rule Management: Implements a flexible rule-based system for traffic filtering, supporting various criteria including IP addresses, ports, and protocols. The system follows security best practices with a default-deny policy.
+3. **Rule Management**: 
+   - YAML-based configuration
+   - Priority-based rule processing
+   - Flexible filtering criteria
+   - Default-deny security policy
 
 ## Security Considerations
 
@@ -96,16 +141,18 @@ When using this firewall, keep in mind several important security considerations
 - Always run in a controlled environment
 - Regularly monitor and review log files
 - Keep the system and dependencies updated
+- Ensure proper rule configuration
 
 ## Future Development
 
-We plan to enhance the firewall with additional features:
+Planned enhancements include:
 
-- Advanced packet filtering capabilities
-- Traffic analysis and pattern recognition
-- User interface for easier configuration
-- Performance monitoring and optimization
-- Enhanced security features
+- Web-based management interface
+- Advanced traffic analysis
+- Rate limiting capabilities
+- IP blacklisting/whitelisting
+- NAT support
+- ICMP traffic handling
 
 ## Contributing
 
@@ -118,14 +165,11 @@ Contributions to improve the firewall are welcome. Please follow these steps:
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License 
 
 ## Acknowledgments
 
-Special thanks to:
-- The Scapy project for providing excellent packet manipulation capabilities
-- The Python community for their valuable resources and tools
+- The Scapy project for packet manipulation capabilities
+- PyYAML for configuration management
 
-## Contact
 
-For questions or suggestions, please open an issue in the GitHub repository or contact the maintainers directly.
