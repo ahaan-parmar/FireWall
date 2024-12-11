@@ -1,0 +1,29 @@
+2024-12-11 18:02:26,043 - INFO - [logger.py:43] - Logging initialized. Writing to: /home/ahaan/FireWall/logs/firewall_20241211_180226.log
+2024-12-11 18:02:26,043 - INFO - [logger.py:43] - Logging initialized. Writing to: /home/ahaan/FireWall/logs/firewall_20241211_180226.log
+2024-12-11 18:02:26,043 - INFO - [firewall_rules.py:63] - Added rule 85173a9e-f1ab-465a-a4a7-d3d79ccf0fa6: Allow HTTP traffic
+2024-12-11 18:02:26,043 - INFO - [firewall_rules.py:63] - Added rule 85173a9e-f1ab-465a-a4a7-d3d79ccf0fa6: Allow HTTPS traffic
+2024-12-11 18:02:26,043 - INFO - [firewall_rules.py:63] - Added rule 85173a9e-f1ab-465a-a4a7-d3d79ccf0fa6: Allow DNS queries
+2024-12-11 18:02:26,043 - INFO - [firewall_rules.py:63] - Added rule 85173a9e-f1ab-465a-a4a7-d3d79ccf0fa6: Allow local network traffic
+2024-12-11 18:02:26,043 - INFO - [logger.py:52] - Firewall application initialized
+2024-12-11 18:02:26,043 - INFO - [logger.py:52] - Starting firewall application
+2024-12-11 18:02:26,043 - ERROR - [rule_config.py:30] - Error loading rules: [Errno 2] No such file or directory: 'config/rules.yaml'
+2024-12-11 18:02:26,044 - INFO - [logger.py:52] - Loaded 0 rules from configuration
+2024-12-11 18:02:26,044 - INFO - [logger.py:52] - Starting packet capture on interface eth0
+2024-12-11 18:02:28,517 - INFO - [logger.py:52] - Packet 1: 10.0.2.15:52024 -> 34.107.243.93:443 [tcp] - ALLOW
+2024-12-11 18:02:28,517 - INFO - [logger.py:52] - Packet 2: 10.0.2.15:48636 -> 34.117.188.166:443 [tcp] - ALLOW
+2024-12-11 18:02:28,518 - INFO - [logger.py:52] - Packet 3: 34.107.243.93:443 -> 10.0.2.15:52024 [tcp] - DENY
+2024-12-11 18:02:28,518 - INFO - [logger.py:52] - Packet 4: 34.117.188.166:443 -> 10.0.2.15:48636 [tcp] - DENY
+2024-12-11 18:02:28,519 - INFO - [logger.py:52] - Packet 5: 10.0.2.15:52024 -> 34.107.243.93:443 [tcp] - ALLOW
+2024-12-11 18:02:28,519 - INFO - [logger.py:52] - Packet 6: 10.0.2.15:52024 -> 34.107.243.93:443 [tcp] - ALLOW
+2024-12-11 18:02:28,519 - INFO - [logger.py:52] - Packet 7: 34.107.243.93:443 -> 10.0.2.15:52024 [tcp] - DENY
+2024-12-11 18:02:28,520 - INFO - [logger.py:52] - Packet 8: 34.107.243.93:443 -> 10.0.2.15:52024 [tcp] - DENY
+2024-12-11 18:02:28,520 - INFO - [logger.py:52] - Packet 9: 10.0.2.15:48636 -> 34.117.188.166:443 [tcp] - ALLOW
+2024-12-11 18:02:28,520 - INFO - [logger.py:52] - Packet 10: 10.0.2.15:48636 -> 34.117.188.166:443 [tcp] - ALLOW
+2024-12-11 18:02:28,521 - INFO - [logger.py:52] - Packet 11: 34.117.188.166:443 -> 10.0.2.15:48636 [tcp] - DENY
+2024-12-11 18:02:28,521 - INFO - [logger.py:52] - Packet 12: 34.117.188.166:443 -> 10.0.2.15:48636 [tcp] - DENY
+2024-12-11 18:02:28,530 - INFO - [logger.py:52] - Packet 13: 34.117.188.166:443 -> 10.0.2.15:48636 [tcp] - DENY
+2024-12-11 18:02:28,531 - INFO - [logger.py:52] - Packet 14: 10.0.2.15:48636 -> 34.117.188.166:443 [tcp] - ALLOW
+2024-12-11 18:02:28,531 - INFO - [logger.py:52] - Packet 15: 34.107.243.93:443 -> 10.0.2.15:52024 [tcp] - DENY
+2024-12-11 18:02:28,532 - INFO - [logger.py:52] - Packet 16: 10.0.2.15:52024 -> 34.107.243.93:443 [tcp] - ALLOW
+2024-12-11 18:02:29,817 - INFO - [logger.py:52] - Stopping packet capture
+2024-12-11 18:02:29,817 - INFO - [logger.py:52] - Firewall shutdown complete
