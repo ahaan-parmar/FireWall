@@ -99,7 +99,7 @@ class PacketHandler:
                 f"[{packet_info['protocol']}] - {action.value.upper()}"
             )
             
-            # Return true to allow packet, false to block
+            # Return true to allow packet,false to block
             return action == Action.ALLOW
             
         except Exception as e:
