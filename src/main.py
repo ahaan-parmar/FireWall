@@ -7,9 +7,10 @@ from packethandler import PacketHandler
 from firewall_rules import Rule, Action, Protocol
 from rule_config import RuleConfiguration
 from logger import FirewallLogger
+import yaml
 
 class FirewallApplication:
-    def __init__(self, interface="eth0", config_file = r"C:\Users\ahaan\Desktop\FireWall\config\rules.yaml"):
+    def __init__(self, interface="eth0", config_file="config/rules.yaml"):
         base_dir = os.path.dirname(os.path.abspath(__file__))  # Get the script's directory
         self.config_file = os.path.join(base_dir, config_file)
         # Initialize our core components
@@ -21,6 +22,27 @@ class FirewallApplication:
         # Instead of setting up signals in __init__, we'll do it in start()
         self.logger.log_info("Firewall application initialized")
 
+def load_rules(self) -> list:
+    # Add debug print to show exact path
+    print(f"Attempting to load rules from: {os.path.abspath(self.config_file)}")
+    try:
+        with open(self.config_file, 'r') as f:
+            config = yaml.safe_load(f)
+
+        rules = []
+        for rule_config in config.get('rules', []):
+            try:
+                rule = self._create_rule_from_config(rule_config)
+                rules.append(rule)
+            except Exception as e:
+                self.logger.error(f"Error creating rule: {str(e)}")
+                continue
+
+        return rules
+
+    except Exception as e:
+        self.logger.error(f"Error loading rules: {str(e)}")
+        return []
     def shutdown(self):
         """
         Handles the shutdown process for our firewall.
