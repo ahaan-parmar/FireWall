@@ -11,38 +11,40 @@ import yaml
 
 class FirewallApplication:
     def __init__(self, interface="eth0", config_file="config/rules.yaml"):
-        base_dir = os.path.dirname(os.path.abspath(__file__))  # Get the script's directory
+        # Get the project root directory (one level up from src)
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         self.config_file = os.path.join(base_dir, config_file)
         # Initialize our core components
         self.logger = FirewallLogger()
         self.packet_handler = PacketHandler(interface=interface)
-        self.config = RuleConfiguration(config_file)
+        self.config = RuleConfiguration(self.config_file)
         self.running = False
         
         # Instead of setting up signals in __init__, we'll do it in start()
         self.logger.log_info("Firewall application initialized")
 
-def load_rules(self) -> list:
-    # Add debug print to show exact path
-    print(f"Attempting to load rules from: {os.path.abspath(self.config_file)}")
-    try:
-        with open(self.config_file, 'r') as f:
-            config = yaml.safe_load(f)
+    def load_rules(self) -> list:
+        # Add debug print to show exact path
+        print(f"Attempting to load rules from: {os.path.abspath(self.config_file)}")
+        try:
+            with open(self.config_file, 'r') as f:
+                config = yaml.safe_load(f)
 
-        rules = []
-        for rule_config in config.get('rules', []):
-            try:
-                rule = self._create_rule_from_config(rule_config)
-                rules.append(rule)
-            except Exception as e:
-                self.logger.error(f"Error creating rule: {str(e)}")
-                continue
+            rules = []
+            for rule_config in config.get('rules', []):
+                try:
+                    rule = self._create_rule_from_config(rule_config)
+                    rules.append(rule)
+                except Exception as e:
+                    self.logger.error(f"Error creating rule: {str(e)}")
+                    continue
 
-        return rules
+            return rules
 
-    except Exception as e:
-        self.logger.error(f"Error loading rules: {str(e)}")
-        return []
+        except Exception as e:
+            self.logger.error(f"Error loading rules: {str(e)}")
+            return []
+
     def shutdown(self):
         """
         Handles the shutdown process for our firewall.
@@ -108,38 +110,4 @@ def load_rules(self) -> list:
         except Exception as e:
             self.logger.log_error(f"Error loading configuration: {str(e)}")
 
-def check_root():
-    """
-    Verifies that the program is running with root privileges,
-    which are required for packet capture.
-    """
-    if os.geteuid() != 0:
-        print("Error: This program must be run with root privileges!")
-        print("Please try again using 'sudo python3 src/main.py'")
-        sys.exit(1)
-
-def main():
-    """
-    Main entry point for our firewall application.
-    Sets up the environment and starts the firewall.
-    """
-    try:
-        # Check for root privileges
-        check_root()
-        
-        # Get available network interface
-        interfaces = os.listdir('/sys/class/net/')
-        interface = 'eth0' if 'eth0' in interfaces else interfaces[0]
-        
-        # Create and start the firewall
-        app = FirewallApplication(interface=interface)
-        app.start()
-        
-    except KeyboardInterrupt:
-        print("\nFirewall stopped by user")
-    except Exception as e:
-        print(f"Error: {str(e)}")
-        sys.exit(1)
-
-if __name__ == "__main__":
-    main()
+# Rest of the code remains the same...
