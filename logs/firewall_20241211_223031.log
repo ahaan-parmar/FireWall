@@ -1,0 +1,111 @@
+2024-12-11 22:30:31,546 - INFO - [logger.py:43] - Logging initialized. Writing to: /home/ahaan/FireWall/logs/firewall_20241211_223031.log
+2024-12-11 22:30:31,546 - INFO - [logger.py:43] - Logging initialized. Writing to: /home/ahaan/FireWall/logs/firewall_20241211_223031.log
+2024-12-11 22:30:31,546 - INFO - [firewall_rules.py:63] - Added rule 42e644fc-24bd-4403-9fea-a1534e8d396a: Allow HTTP traffic
+2024-12-11 22:30:31,546 - INFO - [firewall_rules.py:63] - Added rule 42e644fc-24bd-4403-9fea-a1534e8d396a: Allow HTTPS traffic
+2024-12-11 22:30:31,546 - INFO - [firewall_rules.py:63] - Added rule 42e644fc-24bd-4403-9fea-a1534e8d396a: Allow DNS queries
+2024-12-11 22:30:31,546 - INFO - [firewall_rules.py:63] - Added rule 42e644fc-24bd-4403-9fea-a1534e8d396a: Allow local network traffic
+2024-12-11 22:30:31,546 - INFO - [logger.py:52] - Firewall application initialized
+2024-12-11 22:30:31,546 - INFO - [logger.py:52] - Starting firewall application
+2024-12-11 22:30:31,550 - INFO - [firewall_rules.py:63] - Added rule 42e644fc-24bd-4403-9fea-a1534e8d396a: Allow HTTP traffic
+2024-12-11 22:30:31,550 - INFO - [firewall_rules.py:63] - Added rule 42e644fc-24bd-4403-9fea-a1534e8d396a: Allow HTTPS traffic
+2024-12-11 22:30:31,550 - INFO - [firewall_rules.py:63] - Added rule 42e644fc-24bd-4403-9fea-a1534e8d396a: Allow DNS queries
+2024-12-11 22:30:31,550 - INFO - [firewall_rules.py:63] - Added rule 42e644fc-24bd-4403-9fea-a1534e8d396a: Allow local network traffic
+2024-12-11 22:30:31,550 - INFO - [firewall_rules.py:63] - Added rule 42e644fc-24bd-4403-9fea-a1534e8d396a: Allow inbound DNS responses
+2024-12-11 22:30:31,550 - INFO - [firewall_rules.py:63] - Added rule 42e644fc-24bd-4403-9fea-a1534e8d396a: Allow established TCP connections
+2024-12-11 22:30:31,550 - INFO - [firewall_rules.py:63] - Added rule 42e644fc-24bd-4403-9fea-a1534e8d396a: Allow established UDP connections
+2024-12-11 22:30:31,550 - INFO - [logger.py:52] - Loaded 7 rules from configuration
+2024-12-11 22:30:31,550 - INFO - [logger.py:52] - Starting packet capture on interface eth0
+2024-12-11 22:30:54,732 - INFO - [logger.py:52] - Packet 1: 10.0.2.15:37930 -> 13.67.9.5:443 [tcp] - ALLOW
+2024-12-11 22:30:54,733 - INFO - [logger.py:52] - Packet 2: 13.67.9.5:443 -> 10.0.2.15:37930 [tcp] - ALLOW
+2024-12-11 22:31:01,837 - INFO - [logger.py:52] - Packet 3: 117.18.232.200:443 -> 10.0.2.15:35078 [tcp] - ALLOW
+2024-12-11 22:31:01,838 - INFO - [logger.py:52] - Packet 4: 117.18.232.200:443 -> 10.0.2.15:35078 [tcp] - ALLOW
+2024-12-11 22:31:01,839 - INFO - [logger.py:52] - Packet 5: 10.0.2.15:35078 -> 117.18.232.200:443 [tcp] - ALLOW
+2024-12-11 22:31:01,839 - INFO - [logger.py:52] - Packet 6: 117.18.232.200:443 -> 10.0.2.15:35078 [tcp] - ALLOW
+2024-12-11 22:31:09,585 - INFO - [logger.py:52] - Packet 7: 10.0.2.15:42634 -> 52.168.117.168:443 [tcp] - ALLOW
+2024-12-11 22:31:09,586 - INFO - [logger.py:52] - Packet 8: 52.168.117.168:443 -> 10.0.2.15:42634 [tcp] - ALLOW
+2024-12-11 22:31:16,034 - INFO - [logger.py:52] - Packet 11: 10.0.2.15:35157 -> 116.72.253.254:53 [udp] - ALLOW
+2024-12-11 22:31:16,034 - INFO - [logger.py:52] - Packet 12: 10.0.2.15:35157 -> 116.72.253.254:53 [udp] - ALLOW
+2024-12-11 22:31:16,042 - INFO - [logger.py:52] - Packet 13: 116.72.253.254:53 -> 10.0.2.15:35157 [udp] - ALLOW
+2024-12-11 22:31:16,045 - INFO - [logger.py:52] - Packet 14: 116.72.253.254:53 -> 10.0.2.15:35157 [udp] - ALLOW
+2024-12-11 22:31:16,046 - INFO - [logger.py:52] - Packet 15: 10.0.2.15:56640 -> 34.117.188.166:443 [udp] - ALLOW
+2024-12-11 22:31:16,082 - INFO - [logger.py:52] - Packet 16: 34.117.188.166:443 -> 10.0.2.15:56640 [udp] - ALLOW
+2024-12-11 22:31:16,121 - INFO - [logger.py:52] - Packet 17: 34.117.188.166:443 -> 10.0.2.15:56640 [udp] - ALLOW
+2024-12-11 22:31:16,122 - INFO - [logger.py:52] - Packet 18: 10.0.2.15:56640 -> 34.117.188.166:443 [udp] - ALLOW
+2024-12-11 22:31:16,123 - INFO - [logger.py:52] - Packet 19: 10.0.2.15:56640 -> 34.117.188.166:443 [udp] - ALLOW
+2024-12-11 22:31:16,133 - INFO - [logger.py:52] - Packet 20: 34.117.188.166:443 -> 10.0.2.15:56640 [udp] - ALLOW
+2024-12-11 22:31:16,134 - INFO - [logger.py:52] - Packet 21: 34.117.188.166:443 -> 10.0.2.15:56640 [udp] - ALLOW
+2024-12-11 22:31:16,135 - INFO - [logger.py:52] - Packet 22: 10.0.2.15:56640 -> 34.117.188.166:443 [udp] - ALLOW
+2024-12-11 22:31:16,137 - INFO - [logger.py:52] - Packet 23: 34.117.188.166:443 -> 10.0.2.15:56640 [udp] - ALLOW
+2024-12-11 22:31:16,158 - INFO - [logger.py:52] - Packet 24: 10.0.2.15:56640 -> 34.117.188.166:443 [udp] - ALLOW
+2024-12-11 22:31:16,373 - INFO - [logger.py:52] - Packet 25: 34.117.188.166:443 -> 10.0.2.15:56640 [udp] - ALLOW
+2024-12-11 22:31:16,374 - INFO - [logger.py:52] - Packet 26: 10.0.2.15:56640 -> 34.117.188.166:443 [udp] - ALLOW
+2024-12-11 22:31:16,375 - INFO - [logger.py:52] - Packet 27: 34.117.188.166:443 -> 10.0.2.15:56640 [udp] - ALLOW
+2024-12-11 22:31:16,376 - INFO - [logger.py:52] - Packet 28: 10.0.2.15:56640 -> 34.117.188.166:443 [udp] - ALLOW
+2024-12-11 22:31:16,412 - INFO - [logger.py:52] - Packet 29: 34.117.188.166:443 -> 10.0.2.15:56640 [udp] - ALLOW
+2024-12-11 22:31:20,598 - INFO - [logger.py:52] - Packet 30: 10.0.2.15:42750 -> 116.72.253.254:53 [udp] - ALLOW
+2024-12-11 22:31:20,598 - INFO - [logger.py:52] - Packet 31: 10.0.2.15:41908 -> 142.250.192.78:443 [tcp] - ALLOW
+2024-12-11 22:31:20,621 - INFO - [logger.py:52] - Packet 32: 116.72.253.254:53 -> 10.0.2.15:42750 [udp] - ALLOW
+2024-12-11 22:31:20,621 - INFO - [logger.py:52] - Packet 33: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:20,622 - INFO - [logger.py:52] - Packet 34: 10.0.2.15:41908 -> 142.250.192.78:443 [tcp] - ALLOW
+2024-12-11 22:31:20,622 - INFO - [logger.py:52] - Packet 35: 10.0.2.15:41908 -> 142.250.192.78:443 [tcp] - ALLOW
+2024-12-11 22:31:20,623 - INFO - [logger.py:52] - Packet 36: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:20,623 - INFO - [logger.py:52] - Packet 37: 10.0.2.15:41908 -> 142.250.192.78:443 [tcp] - ALLOW
+2024-12-11 22:31:20,623 - INFO - [logger.py:52] - Packet 38: 10.0.2.15:41908 -> 142.250.192.78:443 [tcp] - ALLOW
+2024-12-11 22:31:20,624 - INFO - [logger.py:52] - Packet 39: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:20,624 - INFO - [logger.py:52] - Packet 40: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:20,694 - INFO - [logger.py:52] - Packet 41: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:20,695 - INFO - [logger.py:52] - Packet 42: 10.0.2.15:41908 -> 142.250.192.78:443 [tcp] - ALLOW
+2024-12-11 22:31:20,695 - INFO - [logger.py:52] - Packet 43: 10.0.2.15:41908 -> 142.250.192.78:443 [tcp] - ALLOW
+2024-12-11 22:31:20,696 - INFO - [logger.py:52] - Packet 44: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:20,696 - INFO - [logger.py:52] - Packet 45: 10.0.2.15:41908 -> 142.250.192.78:443 [tcp] - ALLOW
+2024-12-11 22:31:20,697 - INFO - [logger.py:52] - Packet 46: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:20,745 - INFO - [logger.py:52] - Packet 47: 10.0.2.15:41908 -> 142.250.192.78:443 [tcp] - ALLOW
+2024-12-11 22:31:20,746 - INFO - [logger.py:52] - Packet 48: 10.0.2.15:41908 -> 142.250.192.78:443 [tcp] - ALLOW
+2024-12-11 22:31:20,747 - INFO - [logger.py:52] - Packet 49: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:20,747 - INFO - [logger.py:52] - Packet 50: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:20,748 - INFO - [logger.py:52] - Packet 51: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:20,748 - INFO - [logger.py:52] - Packet 52: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,375 - INFO - [logger.py:52] - Packet 53: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,376 - INFO - [logger.py:52] - Packet 54: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,376 - INFO - [logger.py:52] - Packet 55: 10.0.2.15:41908 -> 142.250.192.78:443 [tcp] - ALLOW
+2024-12-11 22:31:21,377 - INFO - [logger.py:52] - Packet 56: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,377 - INFO - [logger.py:52] - Packet 57: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,378 - INFO - [logger.py:52] - Packet 58: 10.0.2.15:41908 -> 142.250.192.78:443 [tcp] - ALLOW
+2024-12-11 22:31:21,378 - INFO - [logger.py:52] - Packet 59: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,379 - INFO - [logger.py:52] - Packet 60: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,379 - INFO - [logger.py:52] - Packet 61: 10.0.2.15:41908 -> 142.250.192.78:443 [tcp] - ALLOW
+2024-12-11 22:31:21,379 - INFO - [logger.py:52] - Packet 62: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,380 - INFO - [logger.py:52] - Packet 63: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,380 - INFO - [logger.py:52] - Packet 64: 10.0.2.15:41908 -> 142.250.192.78:443 [tcp] - ALLOW
+2024-12-11 22:31:21,381 - INFO - [logger.py:52] - Packet 65: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,381 - INFO - [logger.py:52] - Packet 66: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,381 - INFO - [logger.py:52] - Packet 67: 10.0.2.15:41908 -> 142.250.192.78:443 [tcp] - ALLOW
+2024-12-11 22:31:21,382 - INFO - [logger.py:52] - Packet 68: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,382 - INFO - [logger.py:52] - Packet 69: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,383 - INFO - [logger.py:52] - Packet 70: 10.0.2.15:41908 -> 142.250.192.78:443 [tcp] - ALLOW
+2024-12-11 22:31:21,383 - INFO - [logger.py:52] - Packet 71: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,384 - INFO - [logger.py:52] - Packet 72: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,384 - INFO - [logger.py:52] - Packet 73: 10.0.2.15:41908 -> 142.250.192.78:443 [tcp] - ALLOW
+2024-12-11 22:31:21,384 - INFO - [logger.py:52] - Packet 74: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,385 - INFO - [logger.py:52] - Packet 75: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,385 - INFO - [logger.py:52] - Packet 76: 10.0.2.15:41908 -> 142.250.192.78:443 [tcp] - ALLOW
+2024-12-11 22:31:21,386 - INFO - [logger.py:52] - Packet 77: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,386 - INFO - [logger.py:52] - Packet 78: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,386 - INFO - [logger.py:52] - Packet 79: 10.0.2.15:41908 -> 142.250.192.78:443 [tcp] - ALLOW
+2024-12-11 22:31:21,387 - INFO - [logger.py:52] - Packet 80: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,387 - INFO - [logger.py:52] - Packet 81: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,387 - INFO - [logger.py:52] - Packet 82: 10.0.2.15:41908 -> 142.250.192.78:443 [tcp] - ALLOW
+2024-12-11 22:31:21,388 - INFO - [logger.py:52] - Packet 83: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,388 - INFO - [logger.py:52] - Packet 84: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,388 - INFO - [logger.py:52] - Packet 85: 10.0.2.15:41908 -> 142.250.192.78:443 [tcp] - ALLOW
+2024-12-11 22:31:21,389 - INFO - [logger.py:52] - Packet 86: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,389 - INFO - [logger.py:52] - Packet 87: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,390 - INFO - [logger.py:52] - Packet 88: 10.0.2.15:41908 -> 142.250.192.78:443 [tcp] - ALLOW
+2024-12-11 22:31:21,390 - INFO - [logger.py:52] - Packet 89: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,390 - INFO - [logger.py:52] - Packet 90: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,391 - INFO - [logger.py:52] - Packet 91: 10.0.2.15:41908 -> 142.250.192.78:443 [tcp] - ALLOW
+2024-12-11 22:31:21,391 - INFO - [logger.py:52] - Packet 92: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,392 - INFO - [logger.py:52] - Packet 93: 10.0.2.15:41908 -> 142.250.192.78:443 [tcp] - ALLOW
+2024-12-11 22:31:21,392 - INFO - [logger.py:52] - Packet 94: 142.250.192.78:443 -> 10.0.2.15:41908 [tcp] - ALLOW
+2024-12-11 22:31:21,677 - INFO - [logger.py:52] - Stopping packet capture
+2024-12-11 22:31:21,677 - INFO - [logger.py:52] - Firewall shutdown complete
