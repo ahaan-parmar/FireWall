@@ -10,15 +10,21 @@ from logger import FirewallLogger
 
 class FirewallApplication:
     def __init__(self, interface="eth0", config_file="config/rules.yaml"):
-        base_dir = os.path.dirname(os.path.abspath(__file__))  # Get the script's directory
+        # Get the project root directory (one level up from src)
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         self.config_file = os.path.join(base_dir, config_file)
+        
+        # Add debug prints to help troubleshoot
+        print(f"Current working directory: {os.getcwd()}")
+        print(f"Base directory: {base_dir}")
+        print(f"Config file path: {self.config_file}")
+        
         # Initialize our core components
         self.logger = FirewallLogger()
         self.packet_handler = PacketHandler(interface=interface)
-        self.config = RuleConfiguration(config_file)
+        self.config = RuleConfiguration(self.config_file)  # Pass full path
         self.running = False
         
-        # Instead of setting up signals in __init__, we'll do it in start()
         self.logger.log_info("Firewall application initialized")
 
     def shutdown(self):
