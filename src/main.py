@@ -9,7 +9,7 @@ from rule_config import RuleConfiguration
 from logger import FirewallLogger
 
 class FirewallApplication:
-    def __init__(self, interface="eth0", config_file="config/rules.yaml"):
+    def __init__(self, interface="eth0", config_file = r"C:\Users\ahaan\Desktop\FireWall\config\rules.yaml"):
         base_dir = os.path.dirname(os.path.abspath(__file__))  # Get the script's directory
         self.config_file = os.path.join(base_dir, config_file)
         # Initialize our core components
